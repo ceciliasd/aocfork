@@ -1,21 +1,17 @@
-module mem (
-  input  logic        clk, we,
-  input  logic [31:0] a, wd,
-  output logic [31:0] rd
-  );
+module mem #(parameter FILENAME = "memfile.hex")
+          (input  logic        clk, we,
+           input  logic [31:0] a, wd,
+           output logic [31:0] rd);
 
   logic  [31:0] RAM [0:255];
 
-  // initialize memory with instructions and data
+  // initialize memory with instructions or data
   initial
-    $readmemh("riscv.hex", RAM);
+    $readmemh(FILENAME, RAM);
 
-  // regular port (read/write)
+  assign rd = RAM[a[31:2]]; // word aligned
+
   always_ff @(posedge clk)
-  begin
     if (we)
       RAM[a[31:2]] <= wd;
-    rd <= RAM[a[31:2]];
-  end
-
 endmodule
