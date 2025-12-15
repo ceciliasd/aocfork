@@ -1,0 +1,28 @@
+.text	# 0x00000000
+.globl _start
+_start:
+	addi s1, zero, 268 # LEDR
+	addi s2, zero, 0x0120 # SW
+	addi t0, zero, 1 # ascende os leds
+    addi t1, zero, 1024 # limite para voltar
+
+    VAI:
+		sw t0, (s1)
+		slli t0, t0, 1
+		bne t0, t1, VAI
+	NAO_VAI:
+		lw t3, 0(s2)
+		bne t3, t2, NAO_VAI
+
+	VOLTA:
+		sw t0, (s1)
+		srli t0, t0, 1
+		bne t0, t1, VOLTA
+	NAO_VOLTA:
+		lw t3, 0(s2)
+		bne t3, t1, NAO_VOLTA
+	j VAI
+
+.data	# 0x00000000 ram
+a:	.word 0
+b:	.word 1
