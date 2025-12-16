@@ -15,6 +15,11 @@ module top(
     wire clk   = counter[21];   // clock lento (~12 Hz)
     wire reset = ~KEY[3];        // reset ativo em nível baixo
 
+    reg [31:0] cycle_counter;
+    always @(posedge clk)
+    if (!reset)
+        cycle_counter <= cycle_counter + 1;  // contar ciclos para calculo de desempenho
+
     // Sinais do processador
     wire [31:0] pc, instr;
     wire [31:0] addr, writedata;
