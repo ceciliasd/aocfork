@@ -62,6 +62,13 @@ mem #("data.hex") data_mem (
     .mem_wmask(writemask)
 );
 
+// microprocessor multi
+// riscvmulti cpu(clk, reset, addr, writedata, memwrite, readdata);
+
+// memory mem for multi
+// mem ram(clk, memwrite, addr, writedata, readdata, 'h200 + vaddr, vdata);
+
+
     // Memory-Mapped I/O
     localparam IO_LEDS_bit = 2;  // 0x00000104
     localparam IO_HEX_bit  = 3;  // 0x00000108
