@@ -9,16 +9,13 @@ _start:
 
 loop:
     add  t2, t0, t1          # fib(n)
-
-    andi t2, t2, 0x3FF
     sw   t2, 8(s0)           # guarda na RAM
     sw   t2, 0(s1)           # escreve nos LEDs
-
     mv   t0, t1
     mv   t1, t2
     addi s0, s0, 4           # avança vetor
 
-    j loop
+    j loop // 7 instruções por iteração
 
 .data
 .align 2
