@@ -15,7 +15,7 @@ loop:
     mv   t1, t2
     addi s0, s0, 4           # avança vetor
 
-    j loop // 7 instruções por iteração
+    j loop                   # 7 instruções por iteração
 
 .data
 .align 2
